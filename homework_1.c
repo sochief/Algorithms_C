@@ -31,6 +31,24 @@ struct Node{
 //Add a check for biggest request
 //Add a node in the beginning
 
+void addToBeginning(struct Node** head_ref,char new_address, int new_requests){
+    // Allocate node
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    // put in new data
+    new_node -> address = new_address;
+    new_node -> requests = new_requests;
+
+    // make next next node as prev and prev as null
+    new_node -> next = (*head_ref);
+    new_node -> prev = NULL;
+
+    // change previous of head node to the new node
+    if((*head_ref) != NULL){
+        (*head_ref) -> prev = new_node;
+    }
+    // move the head to point to the new node
+    (*head_ref) = new_node;
+}
 
 
 void addNewRequest(struct Node** head_ref, char address,int requests){
@@ -84,14 +102,24 @@ void deleteNode(struct Node** head_ref, struct Node* del){
     }
     // change prev if node is not the first one
     if(del -> prev != NULL){
-        del -> prev -> next = del -> next;
+        del -> prev -> next = del -> next; // also for the last node
     }
     // free up the memory
     free(del);
     return;
 }
 // Read in the data
-int main(){
-    char data;
-    //data = fopen("data.txt","r");
-}
+int main(int argc,char *argv[]){
+    char data[MAXIMUM];
+    char element;
+    FILE *fptr;
+    fopen("data.txt","r");
+    printf("Reading the file data...");
+    int counter = 0;
+    while((element = getc(fptr))!= EOF){
+        data[counter] = element;
+        counter++;
+    }
+    printf("Amount of the letters in txt doc is equal to:\n%d",counter);
+    return 0;
+    }
