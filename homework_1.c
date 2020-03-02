@@ -28,6 +28,10 @@ struct Node{
     struct Node* prev;
 };
 
+//Add a check for biggest request
+//Add a node in the beginning
+
+
 
 void addNewRequest(struct Node** head_ref, char address,int requests){
     // Allocate node
