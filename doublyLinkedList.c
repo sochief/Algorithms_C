@@ -115,7 +115,7 @@ void addInTheEnd(struct Node** head_ref, int new_data){
         *head_ref = new_node;
         return;
     }
-    // esle, traverse till the last node
+    // else, traverse till the last node
     while (last -> next != NULL)
     {
         last = last -> next;

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #define MAXIMUM  100
 /* Shafkat Nurtdinov St.No: 16011141 
 В каждом узле:
@@ -17,7 +18,7 @@
             make it head
 also, there is a volume limit of cache - L
     if the volume is more than L -- delete the last node
-In the end of the day, ask user doeshe want to delete the cache after all og the actions. If user wants to quit, erase everythong.
+In the end of the day, ask user does he want to delete the cache after all og the actions. If user wants to quit, erase everythong.
 Use doubly linked lists!
 */
 struct Node{
@@ -45,25 +46,48 @@ void addNewRequest(struct Node** head_ref, char address,int requests){
     (*head_ref) = new_node;
 }
 
-void printList(struct Node* node){
+void printForward(struct Node* node){
     struct Node* last;
     printf("\nTraversal in forward direction \n");
     while (node != NULL)
     {
-        printf(" %d ",node -> address);
+        printf( "The address of the page is:%c\n ",last -> address);
+        printf( "An amount of the requests is:%d\n", last -> requests);
         last = node;
         node = node -> next;
-    }
+    }}
+void printReverse(struct Node* node){
+    struct Node* last;
     printf("/nTraversal in reverse direction \n");
     while (last != NULL)
     {
-        printf(" %d ",last -> address);
+        printf( "The address of the page is:%c\n ",last -> address);
+        printf( "An amount of the requests is:%d\n", last -> requests);
         last = last -> prev;
     }
 }
-
+void deleteNode(struct Node** head_ref, struct Node* del){
+    if(head_ref == NULL || del == NULL){
+        return;
+    }
+    // check if its a head node
+    if(*head_ref == del){
+        *head_ref = del -> next;
+    }
+    //if the node is not the last one
+    if(del -> next != NULL){
+        del -> next -> prev = del -> prev;
+    }
+    // change prev if node is not the first one
+    if(del -> prev != NULL){
+        del -> prev -> next = del -> next;
+    }
+    // free up the memory
+    free(del);
+    return;
+}
 // Read in the data
 int main(){
     char data;
-    data = fopen("data.txt","r");
+    //data = fopen("data.txt","r");
 }
