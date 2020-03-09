@@ -12,7 +12,7 @@ static void bubbleSort(int arr[],int n){
     }
     printf("Sorted array: \n ");
     for(int j = 0;j < n; j++){
-        printf("%d",arr[j]);
+        printf("%d ",arr[j]);
     }
 }
 
